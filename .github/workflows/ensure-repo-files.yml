@@ -33,7 +33,7 @@ jobs:
           test -f Directory.Build.props
           test -f Directory.Packages.props
           test -f global.json
-          test -f Library.sln
+          test -f Library.slnx
           test -f LICENSE
           test -f README.md
           test -f SECURITY.md
