@@ -32,6 +32,8 @@ jobs:
 
       - name: Pack (src only, version from tag)
         shell: bash
+        env:
+          NUGET_ID_PREFIX: ${{ vars.NUGET_ID_PREFIX }}
         run: |
           TAG="${GITHUB_REF_NAME}"   
           VERSION="${TAG#v}"         
@@ -60,12 +62,19 @@ jobs:
               -o artifacts
           done < <(find src -name '*.csproj' -print0)
 
+      # Retrieve temp NuGet API key
+      - name: NuGet login
+        id: nuget_login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ vars.NUGET_USERNAME }}
+
       - name: Push packages (.nupkg) from artifacts
         shell: bash
         run: |
           dotnet nuget push "artifacts/*.nupkg" \
             --source "https://api.nuget.org/v3/index.json" \
-            --api-key "${{ secrets.NUGET_API_KEY }}" \
+            --api-key "${{ steps.nuget_login.outputs.NUGET_API_KEY }}" \
             --skip-duplicate
 
       - name: Push symbols (.snupkg) from artifacts
@@ -73,5 +82,5 @@ jobs:
         run: |
           dotnet nuget push "artifacts/*.snupkg" \
             --source "https://api.nuget.org/v3/index.json" \
-            --api-key "${{ secrets.NUGET_API_KEY }}" \
+            --api-key "${{ steps.nuget_login.outputs.NUGET_API_KEY }}" \
             --skip-duplicate
