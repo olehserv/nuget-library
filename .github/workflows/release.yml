@@ -1,0 +1,43 @@
+name: Release (semantic-release)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # for manual run
+
+concurrency:
+  group: release-main
+  cancel-in-progress: false # allow only sigle process run
+
+permissions: {}
+
+jobs:
+  new-tag:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # need to analyze all tags
+    
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run semantic-release
+        run: >
+          npx
+          -p semantic-release
+          -p @semantic-release/commit-analyzer
+          -p @semantic-release/release-notes-generator
+          -p @semantic-release/github
+          semantic-release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

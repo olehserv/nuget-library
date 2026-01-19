@@ -25,6 +25,7 @@ jobs:
       - name: Verify required files exist
         run: |
           test -f .gitignore
+          test -f .releaserc.json
           test -f CONTRIBUTING.md
           test -f "CSharp home test task v2.pdf"
           test -f LICENSE
