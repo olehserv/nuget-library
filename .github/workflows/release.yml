@@ -34,8 +34,8 @@ jobs:
 
       - name: Run semantic-release
         run: >
-          npx
-          -p semantic-release
+          npx \
+          -p semantic-release \
           -p @semantic-release/commit-analyzer \
           -p @semantic-release/release-notes-generator \
           -p @semantic-release/github \
