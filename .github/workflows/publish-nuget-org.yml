@@ -58,29 +58,17 @@ jobs:
           rm -rf artifacts
           mkdir -p artifacts
 
-          # debug info
-          pwd
-          ls -la
-          ls -la src || true
-          find src -name '*.csproj' -print || true #do not fail if no projects
-
           # packing all projects from src/
           while IFS= read -r -d '' CSPROJ; do
-            # take package ID from assembly file (csproj)
-            BASE_ID=$(dotnet msbuild "$CSPROJ" -nologo -t:GetProperty -p:PropertyName=PackageId | tail -n 1)
-            
-            # if no PackageId, use .csproj file name
-            if [ -z "$BASE_ID" ]; then
-              BASE_ID=$(basename "$CSPROJ" .csproj)
-            fi
 
-            FULL_ID="${NUGET_ID_PREFIX}${BASE_ID}"
-            echo "Packing: $CSPROJ as $FULL_ID"
+            echo "Packing: $CSPROJ"
 
             dotnet pack "$CSPROJ" -c Release --no-restore \
+              -p:PackageIdPrefix="$NUGET_ID_PREFIX" \
               -p:PackageVersion="$VERSION" \
-              -p:PackageId="$FULL_ID" \
+              -p:Version="$VERSION" \
               -o artifacts
+              
           done < <(find src -name '*.csproj' -print0)
 
       # Retrieve temp NuGet API key
