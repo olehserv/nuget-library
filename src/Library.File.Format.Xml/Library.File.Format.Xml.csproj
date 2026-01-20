@@ -8,4 +8,8 @@
     <ProjectReference Include="..\Library.File.Core\Library.File.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="FluentXmlSerialization\" />
+  </ItemGroup>
+
 </Project>

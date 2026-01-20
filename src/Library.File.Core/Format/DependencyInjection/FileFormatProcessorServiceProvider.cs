@@ -2,14 +2,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Library.File.Core.Format.DependencyInjection;
 
-internal sealed class FileFormatProcessorServiceProvider : IFileFormatProcessorServiceProvider
+internal sealed class FileFormatProcessorServiceProvider(IServiceProvider serviceProvider) : IFileFormatProcessorServiceProvider
 {
-    private readonly IServiceProvider _serviceProvider;
-
-    public FileFormatProcessorServiceProvider(IServiceProvider serviceProvider)
-    {
-        _serviceProvider = serviceProvider;
-    }
+    private readonly IServiceProvider _serviceProvider = serviceProvider;
 
     public IFileFormatProcessor<IFileFormatType> GetFileFormatProcessor(IFileFormatType fileFormatType)
     {

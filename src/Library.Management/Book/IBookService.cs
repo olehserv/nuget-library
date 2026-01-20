@@ -6,7 +6,7 @@ namespace Library.Management.Book;
 
 public interface IBookService
 {
-    Task<IEnumerable<BookModel>> LoadAllFromFileAsync(
+    Task<IEnumerable<BookModel?>> LoadAllFromFileAsync(
         string filePath, 
         IFileSourceType fileSourceType, 
         IFileFormatType fileFormatType, 
@@ -15,6 +15,8 @@ public interface IBookService
     void AddToList(BookModel book, IList<BookModel> targetBooksList);
 
     IList<BookModel> SortByAuthorAscThanByTitleAsc(IList<BookModel> books);
+
+    IList<BookModel> SearchByTitle(IList<BookModel> books, string titlePart);
 
     Task<bool> SaveAllToFileAsync(
         IEnumerable<BookModel> books,         

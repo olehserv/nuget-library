@@ -17,18 +17,18 @@ internal sealed class PhysicalFileSource : IFileSourceProvider<PhysicalFileSourc
         return await Task.FromResult(System.IO.File.OpenWrite(toFilePath) as Stream);
     }
 
-    private void EnsureFileExist(string filePath)
+    private static void EnsureFileExist(string filePath)
     {
         if (System.IO.File.Exists(filePath)) return;
 
         throw new FileNotFoundException("File not found", Path.GetFileName(filePath));
     }
 
-    private void EnsureDirectoryExists(string filePath)
+    private static void EnsureDirectoryExists(string filePath)
     {
         string? directory = Path.GetDirectoryName(filePath);
 
-        if (directory is null) return;
+        if (string.IsNullOrWhiteSpace(directory)) return;
 
         Directory.CreateDirectory(directory);
     }

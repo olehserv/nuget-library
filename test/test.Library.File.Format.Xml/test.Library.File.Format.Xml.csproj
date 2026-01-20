@@ -1,12 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
-  </PropertyGroup>
-
   <ItemGroup>
-    <Using Include="Xunit" />
+    <ProjectReference Include="..\..\src\Library.File.Format.Xml\Library.File.Format.Xml.csproj" />
+    <ProjectReference Include="..\test.Common\test.Common.csproj" />
   </ItemGroup>
-
 </Project>

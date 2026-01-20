@@ -12,11 +12,13 @@ public sealed class FileFormatProcessorDiRegistrationOptions
         _services = services;
     }
 
-    public void UseFileFormatProcessor<TFileFormatProcessor, TFileFormatType>()
+    public void UseFileFormatProcessor<TFileFormatProcessor, TFileFormatType>(
+        Action<IServiceCollection>? servicesExtraSetup = null)
         where TFileFormatProcessor : class, IFileFormatProcessor<TFileFormatType>
         where TFileFormatType : class, IFileFormatType
     {
         _services.AddTransient<IFileFormatProcessor<TFileFormatType>, TFileFormatProcessor>();
+        servicesExtraSetup?.Invoke(_services);
     }
 
     internal static void Configure(

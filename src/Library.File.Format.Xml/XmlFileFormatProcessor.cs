@@ -1,18 +1,15 @@
 using Library.File.Core.Format;
+using Library.File.Format.Xml.FluentXmlSerialization;
 
 using System.Xml.Serialization;
 
 namespace Library.File.Format.Xml;
 
 ///<inheritdoc/>
-internal sealed class XmlFileFormatProcessor : IFileFormatProcessor<XmlFileFormatType>
+internal sealed class XmlFileFormatProcessor(IXmlSerializerFactory xmlSerializerFactory) 
+: IFileFormatProcessor<XmlFileFormatType>
 {
-    [XmlRoot("records")] // todo: refactor to use DI instead
-    private sealed class RecordsWrapper<T> where T : class, new()
-    {
-        [XmlElement("record")]
-        public List<T> Records { get; set; } = [];
-    }
+    private readonly IXmlSerializerFactory _xmlSerializerFactory = xmlSerializerFactory;
 
     public IEnumerable<T?> Read<T>(Stream readFileStream) where T : class, new()
     {
@@ -27,14 +24,14 @@ internal sealed class XmlFileFormatProcessor : IFileFormatProcessor<XmlFileForma
         if (readFileStream.CanSeek && readFileStream.Length == 0)
             return [];
 
-        var serializer = new XmlSerializer(typeof(RecordsWrapper<T>));
+        var serializer = _xmlSerializerFactory.CreateForRecordsWrapper(typeof(T));
 
-        RecordsWrapper<T>? data = serializer.Deserialize(readFileStream) as RecordsWrapper<T>;
+        var data = serializer.Deserialize(readFileStream) as XmlRecordsWrapper<T>;
 
-        if (data is null || data.Records is null)
+        if (data?.Records is null)
             return [];
 
-        return data.Records.Cast<T?>();
+        return data.Records;
     }
 
     public void Write<T>(Stream writeFileStream, IEnumerable<T> records) where T : class, new()
@@ -52,9 +49,9 @@ internal sealed class XmlFileFormatProcessor : IFileFormatProcessor<XmlFileForma
             writeFileStream.Position = 0;
         }
 
-        var serializer = new XmlSerializer(typeof(RecordsWrapper<T>));
+        var serializer = _xmlSerializerFactory.CreateForRecordsWrapper(typeof(T));
 
-        var wrapper = new RecordsWrapper<T>
+        var wrapper = new XmlRecordsWrapper<T>
         {
             Records = records.ToList()
         };

@@ -7,6 +7,7 @@
     <Project Path="src/Library.Models/Library.Models.csproj" />
   </Folder>
   <Folder Name="/test/">
+    <Project Path="test/test.Common/test.Common.csproj" />
     <Project Path="test/test.Library.File.Core/test.Library.File.Core.csproj" />
     <Project Path="test/test.Library.File.Format.Xml/test.Library.File.Format.Xml.csproj" />
     <Project Path="test/test.Library.File.Source.Physical/test.Library.File.Source.Physical.csproj" />

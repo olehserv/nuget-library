@@ -19,31 +19,56 @@ internal sealed class BookService : IBookService
         _fileFormatProcessorServiceProvider = fileFormatProcessorServiceProvider;
     }
 
-    public Task<IEnumerable<BookModel>> LoadAllFromFileAsync(        
+    public async Task<IEnumerable<BookModel?>> LoadAllFromFileAsync(        
         string filePath, 
         IFileSourceType fileSourceType, 
         IFileFormatType fileFormatType, 
         CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var fileSource = _fileSourceServiceProvider.GetFileSource(fileSourceType);
+        var fileFormatProcessor = _fileFormatProcessorServiceProvider.GetFileFormatProcessor(fileFormatType);
+
+        using var stream = await fileSource.GetReadStream(filePath, cancellationToken);
+        
+        return fileFormatProcessor.Read<BookModel>(stream);
     }
 
     public void AddToList(BookModel book, IList<BookModel> targetBooksList)
     {
-        throw new NotImplementedException();
+        // hardest part of this project =)
+        targetBooksList.Add(book);
     }
 
     public IList<BookModel> SortByAuthorAscThanByTitleAsc(IList<BookModel> books)
     {
-        throw new NotImplementedException();
+        // that is a bit easier =)
+        return books
+            .Where(b => b is not null)
+            .OrderBy(b => b.Author)
+            .ThenBy(b => b.Title)
+            .ToList();
     }
 
-    public Task<bool> SaveAllToFileAsync(IEnumerable<BookModel> books,         
+    public IList<BookModel> SearchByTitle(IList<BookModel> books, string titlePart)
+    {
+        return books
+            .Where(b => b is not null && b.Title is not null)
+            .Where(b => b.Title!.Contains(titlePart, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+    }
+
+    public async Task<bool> SaveAllToFileAsync(IEnumerable<BookModel> books,         
         string filePath, 
         IFileSourceType fileSourceType, 
         IFileFormatType fileFormatType, 
         CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var fileSource = _fileSourceServiceProvider.GetFileSource(fileSourceType);
+        var fileFormatProcessor = _fileFormatProcessorServiceProvider.GetFileFormatProcessor(fileFormatType);
+
+        using var stream = await fileSource.GetWriteStream(filePath, cancellationToken);
+
+        fileFormatProcessor.Write(stream, books);
+        return true;
     }
 }

@@ -29,7 +29,6 @@ jobs:
           test -f .releaserc.json
           test -f CONTRIBUTING.md
           test -f "CSharp home test task v2.pdf"
-          test -f Directory.Build.props
           test -f Directory.Packages.props
           test -f global.json
           test -f Library.slnx

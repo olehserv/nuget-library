@@ -8,7 +8,8 @@
     <Company>OlehService</Company>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-
+    <IsPackable>true</IsPackable>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
 
@@ -19,17 +20,15 @@
     <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(IsTestProject)' != 'true'">
+  <ItemGroup>
     <PackageReference  Include="Microsoft.SourceLink.GitHub" />
     <PackageReference  Include="MinVer" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(IsTestProject)' == 'true'">
-    <PackageReference  Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference  Include="xunit" />
-    <PackageReference  Include="xunit.runner.visualstudio" />
-    <PackageReference  Include="coverlet.collector" >
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+  <ItemGroup>
+    <InternalsVisibleTo Include="test.Library.File.Core" />
+    <InternalsVisibleTo Include="test.Library.File.Format.Xml" />
+    <InternalsVisibleTo Include="test.Library.File.Source.Physical" />
+    <InternalsVisibleTo Include="test.Library.Management" />
   </ItemGroup>
 </Project>
