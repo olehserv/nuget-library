@@ -37,8 +37,20 @@ jobs:
         shell: bash
         env:
           NUGET_ID_PREFIX: ${{ vars.NUGET_ID_PREFIX }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
-          TAG="${GITHUB_REF_NAME}"   
+          echo "Workflow head sha: $HEAD_SHA"
+
+          # Tag that points to the commit produced by semantic-release
+          TAG="$(git tag --points-at "$HEAD_SHA" | head -n 1)"
+          
+          # if commit does not have tag -> exit with error
+          if [ -z "$TAG" ]; then
+            echo "No tag points to $HEAD_SHA. Available tags:"
+            git tag --sort=-creatordate | head -n 20
+            exit 1
+          fi
+             
           VERSION="${TAG#v}"         
           echo "Packing version: $VERSION"
           echo "Using PackageId prefix: ${NUGET_ID_PREFIX}"
