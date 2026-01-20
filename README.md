@@ -1,4 +1,4 @@
-# PET project by Oleh Shevtsiv
+# Fulcrum Software test project by [Oleh Shevtsiv](https://www.linkedin.com/in/olegshevtsiv/)
 
 > [!TIP]
 > 🖐️ *This repo inspired by first version: https://github.com/olehserv/oleh-shevtsiv-pet*
@@ -60,12 +60,6 @@ tests/
 ## 📄 License
 This project is licensed under the **MIT License**.  
 See the [LICENSE](LICENSE) file for details.
-
----
-
-## 👤 Author
-**Oleh Shevtsiv**  
-LinkedIN: https://www.linkedin.com/in/olegshevtsiv/
 
 ---
 

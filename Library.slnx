@@ -1,7 +1,9 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/Library.Core/Library.Core.csproj" />
-    <Project Path="src/Library.DataAccess.XML/Library.DataAccess.XML.csproj" />
-    <Project Path="src/Library.DataAccess/Library.DataAccess.csproj" />
+    <Project Path="src/Library.File.Core/Library.File.Core.csproj" />
+    <Project Path="src/Library.File.Format.Xml/Library.File.Format.Xml.csproj" />
+    <Project Path="src/Library.File.Source.Physical/Library.File.Source.Physical.csproj" />
+    <Project Path="src/Library.Management/Library.Management.csproj" />
   </Folder>
 </Solution>
