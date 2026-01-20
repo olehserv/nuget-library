@@ -40,4 +40,5 @@ jobs:
           -p @semantic-release/github
           semantic-release
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.REPO_PAT }}
+          GH_TOKEN: ${{ secrets.REPO_PAT }}

@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  publish:
+  publish-nuget-org:
     runs-on: ubuntu-latest
 
     steps:
