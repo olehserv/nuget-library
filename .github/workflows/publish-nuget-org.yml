@@ -61,11 +61,13 @@ jobs:
 
           # packing all projects from src/
           while IFS= read -r -d '' CSPROJ; do
+            BASE_ID=$(basename "$CSPROJ" .csproj)
+            FULL_ID="${NUGET_ID_PREFIX}${BASE_ID}"
 
-            echo "Packing: $CSPROJ"
+            echo "Packing: $CSPROJ with PackageId: $FULL_ID"
 
             dotnet pack "$CSPROJ" -c Release --no-restore \
-              -p:PackageIdPrefix="$NUGET_ID_PREFIX" \
+              -p:PackageId="$FULL_ID" \
               -p:PackageVersion="$VERSION" \
               -p:Version="$VERSION" \
               -o artifacts
