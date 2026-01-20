@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace Library.File.Format.Xml;
 
 ///<inheritdoc/>
-internal class XmlFileFormatProcessor : IFileFormatProcessor
+internal sealed class XmlFileFormatProcessor : IFileFormatProcessor<XmlFileFormatType>
 {
     [XmlRoot("records")] // todo: refactor to use DI instead
     private sealed class RecordsWrapper<T> where T : class, new()
