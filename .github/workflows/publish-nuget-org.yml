@@ -58,6 +58,12 @@ jobs:
           rm -rf artifacts
           mkdir -p artifacts
 
+          # debug info
+          pwd
+          ls -la
+          ls -la src || true
+          find src -name '*.csproj' -print || true #do not fail if no projects
+
           # packing all projects from src/
           while IFS= read -r -d '' CSPROJ; do
             # take package ID from assembly file (csproj)
@@ -71,7 +77,7 @@ jobs:
             FULL_ID="${NUGET_ID_PREFIX}${BASE_ID}"
             echo "Packing: $CSPROJ as $FULL_ID"
 
-            dotnet pack "$CSPROJ" -c Release --no-build \
+            dotnet pack "$CSPROJ" -c Release --no-restore \
               -p:PackageVersion="$VERSION" \
               -p:PackageId="$FULL_ID" \
               -o artifacts
