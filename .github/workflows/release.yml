@@ -1,4 +1,4 @@
-name: Release (semantic-release)
+name: Release (tag)
 
 on:
   push:
@@ -12,7 +12,7 @@ concurrency:
 permissions: {}
 
 jobs:
-  new-tag:
+  push-new-tag:
     runs-on: ubuntu-latest
 
     permissions:
@@ -25,6 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # need to analyze all tags
+          token: ${{ secrets.REPO_PAT }}
     
       - name: Setup Node
         uses: actions/setup-node@v4
