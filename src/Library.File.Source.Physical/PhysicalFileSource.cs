@@ -3,7 +3,7 @@ using Library.File.Core.Source;
 namespace Library.File.Source.Physical;
 
 ///<inheritdoc/>
-internal class PhysicalFileSource : IFileSource
+internal class PhysicalFileSource : IFileSourceProvider<PhysicalFileSourceType>
 {
     public async Task<Stream> GetReadStream(string filePath, CancellationToken cancellationToken = default)
     {

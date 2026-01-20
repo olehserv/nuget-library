@@ -6,6 +6,6 @@ public static class FileSourceDiRegistrationOptionsExtension
 {
     public static void UsePhysicalFileSource(this FileSourceDiRegistrationOptions options)
     {
-        options.UseSource<PhysicalFileSource>();
+        options.UseSource<PhysicalFileSource, PhysicalFileSourceType>();
     }
 }

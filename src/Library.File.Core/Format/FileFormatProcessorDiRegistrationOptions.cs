@@ -11,10 +11,11 @@ public class FileFormatProcessorDiRegistrationOptions
         _services = services;
     }
 
-    public void UseFileFormatProcessor<TFileFormatProcessor>()
-        where TFileFormatProcessor : class, IFileFormatProcessor
+    public void UseFileFormatProcessor<TFileFormatProcessor, TFileFormatType>()
+        where TFileFormatProcessor : class, IFileFormatProcessor<TFileFormatType>
+        where TFileFormatType : class, IFileFormatType
     {
-        _services.AddTransient<IFileFormatProcessor, TFileFormatProcessor>();
+        _services.AddTransient<IFileFormatProcessor<TFileFormatType>, TFileFormatProcessor>();
     }
 
     internal static void Configure(

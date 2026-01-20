@@ -7,6 +7,6 @@ public static class FileFormatProcessorDiRegistrationOptionsExtension
     public static void UseXmlFileFormatProcessor(this FileFormatProcessorDiRegistrationOptions options) 
     // todo: add param to setup serialization schema settings for each model and registed default
     {
-        options.UseFileFormatProcessor<XmlFileFormatProcessor>();
+        options.UseFileFormatProcessor<XmlFileFormatProcessor, XmlFileFormatType>();
     }
 }
