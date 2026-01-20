@@ -38,6 +38,18 @@ tests/
 
 ---
 
+## 📦 Huget packages
+| Package | Version | Downloads |
+|--------|---------|-----------|
+| `Library.File.Core` | [![NuGet](https://img.shields.io/nuget/v/olehserv.fulcrum-software-test.Library.File.Core.svg)](https://www.nuget.org/packages/olehserv.fulcrum-software-test.Library.File.Core/) | [![NuGet](https://img.shields.io/nuget/dt/olehserv.fulcrum-software-test.Library.File.Core.svg)](https://www.nuget.org/packages/olehserv.fulcrum-software-test.Library.File.Core/) |
+| `Library.File.Format.Xml` | [![NuGet](https://img.shields.io/nuget/v/olehserv.fulcrum-software-test.Library.File.Format.Xml.svg)](https://www.nuget.org/packages/olehserv.fulcrum-software-test.Library.File.Format.Xml/) | [![NuGet](https://img.shields.io/nuget/dt/olehserv.fulcrum-software-test.Library.File.Format.Xml.svg)](https://www.nuget.org/packages/olehserv.fulcrum-software-test.Library.File.Format.Xml/) |
+| `Library.File.Source.Physical` | [![NuGet](https://img.shields.io/nuget/v/olehserv.fulcrum-software-test.Library.File.Source.Physical.svg)](https://www.nuget.org/packages/olehserv.fulcrum-software-test.Library.File.Source.Physical/) | [![NuGet](https://img.shields.io/nuget/dt/olehserv.fulcrum-software-test.Library.File.Source.Physical.svg)](https://www.nuget.org/packages/olehserv.fulcrum-software-test.Library.File.Source.Physical/) |
+| `Library.Management` | [![NuGet](https://img.shields.io/nuget/v/olehserv.fulcrum-software-test.Library.Management.svg)](https://www.nuget.org/packages/olehserv.fulcrum-software-test.Library.Management/) | [![NuGet](https://img.shields.io/nuget/dt/olehserv.fulcrum-software-test.Library.Management.svg)](https://www.nuget.org/packages/olehserv.fulcrum-software-test.Library.Management/) |
+| `Library.Models` | [![NuGet](https://img.shields.io/nuget/v/olehserv.fulcrum-software-test.Library.Models.svg)](https://www.nuget.org/packages/olehserv.fulcrum-software-test.Library.Models/) | [![NuGet](https://img.shields.io/nuget/dt/olehserv.fulcrum-software-test.Library.Models.svg)](https://www.nuget.org/packages/olehserv.fulcrum-software-test.Library.Models/) |
+
+
+---
+
 ## 🚀 Getting Started
 
 ### 🧰 Prerequisites
