@@ -3,7 +3,7 @@ namespace Library.File.Core.Format;
 /// <summary>
 /// File Format Processing (read/write) interface
 /// </summary>
-public interface IFileFormatProcessor<TFileFormatType> where TFileFormatType : class, IFileFormatType
+public interface IFileFormatProcessor<out TFileFormatType> where TFileFormatType : class, IFileFormatType
 {
     /// <summary>
     /// Enumerable reading parsed record into type T

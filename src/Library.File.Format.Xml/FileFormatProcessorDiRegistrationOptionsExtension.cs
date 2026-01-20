@@ -1,4 +1,4 @@
-﻿using Library.File.Core.Format;
+﻿using Library.File.Core.Format.DependencyInjection;
 
 namespace Library.File.Format.Xml;
 

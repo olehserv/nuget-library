@@ -1,8 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace Library.File.Core.Format;
+namespace Library.File.Core.Format.DependencyInjection;
 
-public class FileFormatProcessorDiRegistrationOptions
+public sealed class FileFormatProcessorDiRegistrationOptions
 {
     private readonly IServiceCollection _services;
 
@@ -22,6 +23,7 @@ public class FileFormatProcessorDiRegistrationOptions
         IServiceCollection services,
         Action<FileFormatProcessorDiRegistrationOptions> registerOptionsSetup)
     {
+        services.TryAddSingleton<IFileFormatProcessorServiceProvider, FileFormatProcessorServiceProvider>();
         registerOptionsSetup?.Invoke(new (services));
     }
 }
