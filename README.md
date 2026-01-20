@@ -81,6 +81,12 @@ dotnet test {path to slnx file}
 
 ---
 
+## TODO:
+- Add dry run for semantic release on pull request creation
+- Add dry run for packing nugets on pull request
+
+---
+
 ## 🤝 Contributing
 [**Follow**](./CONTRIBUTING.md) for more details.
 
