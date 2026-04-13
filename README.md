@@ -1,4 +1,4 @@
-# Fulcrum Software test project by [Oleh Shevtsiv](https://www.linkedin.com/in/olegshevtsiv/)
+# Nuget Library packages Repo project by [Oleh Shevtsiv](https://www.linkedin.com/in/olegshevtsiv/)
 
 > [!TIP]
 > 🖐️ *This repo inspired by first version: https://github.com/olehserv/oleh-shevtsiv-pet*
@@ -9,7 +9,20 @@
 > This project was created as a **technical assignment for a job application**
 > and is intended for demonstration purposes only.
 
-📎 [Technical Assignment Requirements (PDF)](./CSharp%20home%20test%20task%20v2.pdf)
+This Repo consists of: 
+1) Basic CI workflows
+    - Check [repo files existance, .Net Rebase/Build/Test on push commits](.github/workflows/ci.yml)
+    - [PRs title check](.github/workflows/pr-title-check.yml) if contains Semantic Prefixes
+    - [Create new tag](.github/workflows/release.yml) on each merge to `main` branch according to semantic release <sub>(TODO: backward patches policy)</sub>
+    - [Pack pachages and Push to Nuget server](.github/workflows/publish-nuget-org.yml) after new tag created by workflow.
+2) .Net solution:
+    - [`.slnx`](Library.slnx) solution file (new simplest one instead of old bulky `.sln`)
+    - [Directory.Packages.props](Directory.Packages.props) for centralyzed packages versions managing
+    - [global.json](global.json) to define wich .Net version required to be used
+    - [src](src) - folder with main source code and [Directory.Build.props](src/Directory.Build.props) file for centralyzed MSBuild configs (applies to all `.csproj` files in all nested directories)
+    - [test](test) - folder with unit tests and [Directory.Build.props](src/Directory.Build.props) file.
+3) Git settings files: [.gitattributes](.gitattributes) for repo files settings; [.gitignore](.gitignore) for ignoring files and folders when pushing.
+4) License, Contribution rules, Security policies.
 
 ---
 
@@ -81,12 +94,6 @@ dotnet test {path to slnx file}
 
 ---
 
-## TODO:
-- Add dry run for semantic release on pull request creation
-- Add dry run for packing nugets on pull request
-
----
-
 ## 🤝 Contributing
 [**Follow**](./CONTRIBUTING.md) for more details.
 
@@ -98,6 +105,8 @@ See the [LICENSE](LICENSE) file for details.
 
 ---
 
-> ### P.S.
-> ![Oh no, I was catched😢](etc/img/I_see_youu.png)
-> # 👀
+### TODO:
+- Add dry run for semantic release on pull request creation
+- Add dry run for packing nugets on pull request
+- Backward patches policy
+- Fix serialization to make it more versatile
