@@ -9,9 +9,8 @@ Thank you for your interest in contributing to this repository! This document de
 
 ## 🔂 Development Workflow
 
-### 1. Development happens in `dev`
+### 1. All regular development Pull Requests must target the `main` branch
 
-- **All regular development Pull Requests must target the `main` branch**
 - Feature work, fixes, refactoring, and documentation updates should be merged directly into `main`
 - Typical branch examples:
   - `feature/add-authentication`
@@ -25,7 +24,7 @@ Thank you for your interest in contributing to this repository! This document de
 
 Once PR merged into `main` a new tag is automatically created depending on commit prefix.
 After that a new changes are packing to be ready to push on Nuget Server.
-Push only can be done manually with GitHub Action {!specify link to it!}.
+Once new tag created, a package pushes onto Nuget Server.
 
 ---
 
